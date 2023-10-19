@@ -26,11 +26,14 @@
         e.preventDefault();
 
         if (parseInt(this.state.value) === this.state.first * this.state.second) {
-          this.setState({
-            first: Math.ceil(Math.random() * 9),
-            second: Math.ceil(Math.random() * 9),
-            value: '',
-            result: '정답~!'
+          // 이전 상태값으로 새로운 state를 만들 때 새로운 state를 리턴하는 함수 사용
+          this.setState((prevState) => {
+            return {
+              first: Math.ceil(Math.random() * 9),
+              second: Math.ceil(Math.random() * 9),
+              value: '',
+              result: prevState.value + ' 정답~!'
+            }
           })
         } else {
           this.setState({
