@@ -23,13 +23,35 @@
         }
       }
 
+      // 정답 입력창 onSubmit 이벤트
+      onSubmit = (e) => {
+        e.preventDefault();
+
+        if (parseInt(this.state.value) === this.state.first * this.state.second) {
+          this.setState({
+            first: Math.ceil(Math.random() * 9),
+            second: Math.ceil(Math.random() * 9),
+            value: '',
+            result: '정답~!'
+          })
+        } else {
+          this.setState({
+            value: '',
+            result: '땡!'
+          })
+        }
+      }
+
+      // 정답 입력창 onChange 이벤트
+      onChange = (e) => this.setState({ value: e.target.value })
+
       render() {
         return (
           <React.Fragment>
             <div>{this.state.first} 곱하기 {this.state.second}는?</div>
 
-            <form>
-              <input type="number" value={this.state.value} onChange={(e) => this.setState({ value: e.target.value })} />
+            <form onSubmit={this.onSubmit}>
+              <input type="number" value={this.state.value} onChange={this.onChange} placeholder="정답 입력" />
               <button>입력</button>
             </form>
 
