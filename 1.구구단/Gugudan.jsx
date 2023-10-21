@@ -15,7 +15,9 @@ const Gugudan = () => {
 			setFirst(Math.ceil(Math.random() * 9));
 			setSecond(Math.ceil(Math.random() * 9));
 			setValue('');
-			setResult(value + ' 정답~!');
+			setResult((prevResult) => {
+				return prevResult + ' 정답~!';
+			});
 			inputRef.current.focus();
 		} else {
 			setValue('');
