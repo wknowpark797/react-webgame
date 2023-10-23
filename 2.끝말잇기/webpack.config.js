@@ -16,7 +16,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader',
+				loader: 'babel-loader', // entry의 파일들에 babel-loader를 적용한다.
 				options: {
 					presets: ['@babel/preset-env', '@babel/preset-react'],
 					plugins: ['@babel/plugin-proposal-class-properties'],
