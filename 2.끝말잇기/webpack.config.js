@@ -38,9 +38,9 @@ module.exports = {
 	plugins: [new ReactRefreshWebpackPlugin()],
 	output: {
 		// __dirname: 현재 폴더 경로에 dist 생성
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, 'dist'), // 실제 경로
 		filename: 'app.js',
-		publicPath: '/dist',
+		publicPath: '/dist', // 가상 경로 (webpack dev server 사용)
 	}, // 출력
 	devServer: {
 		devMiddleware: { publicPath: '/dist' },
