@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const WordRelayClass = require('./WordRelayClass');
+// const WordRelayClass = require('./WordRelayClass');
+const WordRelay = require('./WordRelay');
 
-ReactDOM.render(<WordRelayClass />, document.querySelector('#root'));
+ReactDOM.render(<WordRelay />, document.querySelector('#root'));
