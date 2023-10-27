@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TryClass from './TryClass';
 
 function getNumbers() {}
 
@@ -7,7 +8,13 @@ class NumberBaseballClass extends Component {
 		result: '',
 		value: '',
 		answer: getNumbers(), // [1, 3, 5, 7]
-		tries: ['사과', '수박', '바나나', '파인애플', '배'],
+		tries: [
+			{ fruit: '사과', taste: '달다' },
+			{ fruit: '수박', taste: '맛있다' },
+			{ fruit: '바나나', taste: '달다' },
+			{ fruit: '파인애플', taste: '달다' },
+			{ fruit: '배', taste: '달다' },
+		],
 	};
 
 	onSubmitForm = (e) => {
@@ -31,8 +38,8 @@ class NumberBaseballClass extends Component {
 				<div>{this.state.tries.length}번 시도하셨습니다.</div>
 
 				<ul>
-					{this.state.tries.map((item, idx) => {
-						return <li key={idx}>{item}</li>;
+					{this.state.tries.map((item) => {
+						return <TryClass key={item.fruit + item.taste} item={item} />;
 					})}
 				</ul>
 			</>
