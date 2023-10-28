@@ -4,7 +4,7 @@ class TryClass extends Component {
 	render() {
 		return (
 			<li>
-				<b>{this.props.item.fruit}</b> - {this.props.item.taste}
+				<b>{this.props.tryInfo.try}</b> - {this.props.tryInfo.result}
 			</li>
 		);
 	}
