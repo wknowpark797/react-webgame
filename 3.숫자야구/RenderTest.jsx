@@ -5,6 +5,7 @@ class RenderTest extends Component {
 		counter: 0,
 	};
 
+	// shouldComponentUpdate -> PureComponent 사용 가능
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
 		if (this.state.counter !== nextState.counter) {
 			return true;

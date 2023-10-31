@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class TryClass extends Component {
+class TryClass extends PureComponent {
 	render() {
+		console.log('자식 컴포넌트 리렌더링 테스트');
 		const { tryInfo } = this.props;
 
 		return (
