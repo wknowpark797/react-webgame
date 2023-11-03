@@ -58,7 +58,7 @@ class RspClass extends Component {
 		}
 	};
 
-	onClickBtn = (choice) => {
+	onClickBtn = (choice) => () => {
 		const { imgCoord } = this.state;
 		clearInterval(this.interval);
 
@@ -102,13 +102,13 @@ class RspClass extends Component {
 				></div>
 
 				<div>
-					<button id='rock' className='btn' onClick={() => this.onClickBtn('바위')}>
+					<button id='rock' className='btn' onClick={this.onClickBtn('바위')}>
 						바위
 					</button>
-					<button id='scissor' className='btn' onClick={() => this.onClickBtn('가위')}>
+					<button id='scissor' className='btn' onClick={this.onClickBtn('가위')}>
 						가위
 					</button>
-					<button id='paper' className='btn' onClick={() => this.onClickBtn('보')}>
+					<button id='paper' className='btn' onClick={this.onClickBtn('보')}>
 						보
 					</button>
 				</div>
