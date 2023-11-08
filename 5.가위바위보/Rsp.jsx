@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
+import useInterval from './useInterval';
 
 const rspCoords = {
 	바위: '0',
@@ -22,8 +23,10 @@ const Rsp = () => {
 	const [result, setResult] = useState('');
 	const [imgCoord, setImgCoord] = useState(rspCoords.바위); // 좌표
 	const [score, setScore] = useState(0);
-	const interval = useRef();
+	const [isRunning, setIsRunning] = useState(true);
 
+	/*
+	const interval = useRef();
 	useEffect(() => {
 		interval.current = setInterval(changeHand, 100);
 
@@ -31,10 +34,9 @@ const Rsp = () => {
 			clearInterval(interval.current);
 		};
 	}, [imgCoord]);
-	/*
-    imgCoord가 바뀔 때마다 useEffect 실행
-    -> 매번 clearInterval을 하기 때문에 그냥 setTimeout을 하는 것과 동일
-  */
+	// imgCoord가 바뀔 때마다 useEffect 실행
+	// -> 매번 clearInterval을 하기 때문에 그냥 setTimeout을 하는 것과 동일
+	*/
 
 	const changeHand = () => {
 		if (imgCoord === rspCoords.바위) {
@@ -46,26 +48,31 @@ const Rsp = () => {
 		}
 	};
 
+	useInterval(changeHand, isRunning ? 100 : null);
+
 	const onClickBtn = (choice) => () => {
-		clearInterval(interval.current);
+		// 멈췄을 때 재클릭 방지
+		if (isRunning) {
+			setIsRunning(false);
 
-		const myScore = scores[choice];
-		const cpuScore = scores[computerChoice(imgCoord)];
-		const diff = myScore - cpuScore;
+			const myScore = scores[choice];
+			const cpuScore = scores[computerChoice(imgCoord)];
+			const diff = myScore - cpuScore;
 
-		if (diff === 0) {
-			setResult('비겼습니다!');
-		} else if ([-1, 2].includes(diff)) {
-			setResult('이겼습니다!');
-			setScore((prevScore) => prevScore + 1);
-		} else {
-			setResult('졌습니다!');
-			setScore((prevScore) => prevScore - 1);
+			if (diff === 0) {
+				setResult('비겼습니다!');
+			} else if ([-1, 2].includes(diff)) {
+				setResult('이겼습니다!');
+				setScore((prevScore) => prevScore + 1);
+			} else {
+				setResult('졌습니다!');
+				setScore((prevScore) => prevScore - 1);
+			}
+
+			setTimeout(() => {
+				setIsRunning(true);
+			}, 1000);
 		}
-
-		setTimeout(() => {
-			interval.current = setInterval(changeHand, 100);
-		}, 2000);
 	};
 
 	return (
